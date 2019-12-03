@@ -27,6 +27,8 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
 
     }
     
+    
+    
     func setupConstraints() {
         
         categoriesLabel.snp.makeConstraints { make in
@@ -46,3 +48,4 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     
     
 }
+
