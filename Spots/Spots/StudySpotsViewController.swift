@@ -22,7 +22,7 @@ class StudySpotsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.title = "???"
+        title = "???"
         view.backgroundColor = .white
         
         let layout = UICollectionViewFlowLayout()
@@ -44,6 +44,11 @@ class StudySpotsViewController: UIViewController {
         
         setupConstraints()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     func setupConstraints() {
