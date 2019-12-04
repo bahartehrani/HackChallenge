@@ -109,8 +109,7 @@ class StudySpotsViewController: UIViewController {
             make.centerY.equalTo(view.center.y)
             make.width.equalTo(300)
         }
-        
-        
+        // ehehhehe
     }
 
 }
