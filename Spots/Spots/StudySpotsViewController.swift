@@ -103,13 +103,12 @@ class StudySpotsViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView).offset(padding * 6)
+            make.top.equalTo(collectionView).offset(padding * 8)
             make.height.equalTo(100)
             make.centerX.equalTo(view.center.x)
             make.centerY.equalTo(view.center.y)
             make.width.equalTo(300)
         }
-        
         
         
     }
@@ -173,7 +172,7 @@ extension StudySpotsViewController: UITableViewDataSource {
 
 extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 15
+        return 100
     }
     
 }
