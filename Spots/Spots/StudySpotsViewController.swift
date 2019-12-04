@@ -71,7 +71,7 @@ class StudySpotsViewController: UIViewController {
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
@@ -104,10 +104,10 @@ class StudySpotsViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(collectionView).offset(padding * 8)
-            make.height.equalTo(100)
-            make.centerX.equalTo(view.center.x)
-            make.centerY.equalTo(view.center.y)
-            make.width.equalTo(300)
+            make.bottom.equalTo(view.snp.bottom)
+            make.leading.equalToSuperview().offset(padding)
+            make.trailing.equalToSuperview().offset(-padding)
+            //make.width.equalTo(300)
         }
         // ehehhehe
     }
