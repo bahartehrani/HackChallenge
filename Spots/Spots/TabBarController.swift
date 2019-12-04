@@ -17,7 +17,6 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //title = "Study Spots"
         
         let SSViewController = StudySpotsViewController()
         SSViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
@@ -34,10 +33,5 @@ class TabBarController: UITabBarController {
         
         
     }
-    
-    
-    
-
-    
 
 }
