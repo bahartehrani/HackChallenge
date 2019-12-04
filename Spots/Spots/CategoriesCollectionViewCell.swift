@@ -20,6 +20,14 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         
         categoriesLabel = UILabel()
         categoriesLabel.textColor = .white
+    
+        categoriesLabel.textAlignment = .center
+        //categoriesLabel.font = UIFont(name: categoriesLabel.font.fontName, size: 15)
+        categoriesLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
+        categoriesLabel.layer.masksToBounds = true
+        categoriesLabel.layer.cornerRadius = 12
+        
+        categoriesLabel.layer.backgroundColor = UIColor(red: 27/255, green: 26/255, blue: 46/255, alpha: 1.0).cgColor
         
         categoriesLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(categoriesLabel)
