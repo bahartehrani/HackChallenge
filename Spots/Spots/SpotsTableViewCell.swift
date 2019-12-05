@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SnapKit
 
 class SpotsTableViewCell: UITableViewCell {
 
     let padding : CGFloat = 5
     var label : UILabel!
     var spotImage : UIImageView!
+    var heartImageView : UIImageView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,6 +32,11 @@ class SpotsTableViewCell: UITableViewCell {
         //image.image = UIImage(named: test)
         contentView.addSubview(spotImage)
         
+        heartImageView = UIImageView(image: UIImage(named: "heart"))
+        heartImageView.contentMode = .scaleAspectFit
+        heartImageView.isHidden = true
+        contentView.addSubview(heartImageView)
+        
         setupConstraints()
     }
     
@@ -40,11 +47,17 @@ class SpotsTableViewCell: UITableViewCell {
     
     func setupConstraints() {
     
-    NSLayoutConstraint.activate([
-        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-        label.heightAnchor.constraint(equalToConstant: 30),
-        label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding)
-        ])
+        label.snp.makeConstraints { make in
+            make.bottom.leading.equalToSuperview()
+            make.width.equalTo(padding * 4)
+        }
+        
+        heartImageView.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview()
+            make.width.equalTo(padding * 4)
+        }
+        
+        
     }
     
     

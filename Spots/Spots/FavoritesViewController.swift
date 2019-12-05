@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
 
     var tableView : UITableView!
     let reuseIdentifier = "favoritesCellReuse"
-    var spots : [Spot] = []
+    var faveSpots : [Spot] = []
     let padding : CGFloat = 8
     var viewTitle : UILabel!
     
@@ -64,12 +64,12 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spots.count
+        return faveSpots.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
-        cell.configure(for: spots[indexPath.row])
+        cell.configure(for: faveSpots[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
