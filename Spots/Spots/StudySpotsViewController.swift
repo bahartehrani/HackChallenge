@@ -105,11 +105,10 @@ class StudySpotsViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(collectionView).offset(padding * 8)
             make.bottom.equalTo(view.snp.bottom)
-            make.leading.equalToSuperview().offset(padding)
-            make.trailing.equalToSuperview().offset(-padding)
-            //make.width.equalTo(300)
+            make.leading.equalToSuperview().offset(padding * 6)
+            make.trailing.equalToSuperview().offset(-padding * 6)
         }
-        // ehehhehe
+        
     }
 
 }
@@ -125,7 +124,6 @@ extension StudySpotsViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoriesCellReuseIdentifier, for: indexPath) as! CategoriesCollectionViewCell
         
         cell.configure(for: categories[indexPath.row])
-        
         return cell
     }
     
@@ -171,7 +169,7 @@ extension StudySpotsViewController: UITableViewDataSource {
 
 extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 175
     }
     
 }
