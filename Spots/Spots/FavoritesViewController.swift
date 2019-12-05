@@ -10,13 +10,75 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
+    var tableView : UITableView!
+    let reuseIdentifier = "favoritesCellReuse"
+    var spots : [Spot] = []
+    let padding : CGFloat = 8
+    var viewTitle : UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
+        
+        viewTitle = UILabel()
+        viewTitle.textAlignment = .center
+        viewTitle.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
+        viewTitle.text = "Favorite Spots"
+        viewTitle.font = UIFont.boldSystemFont(ofSize: 32.0)
+        view.addSubview(viewTitle)
+        
+        tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
+        tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        view.addSubview(tableView)
+        
+        setupConstraints()
         
     }
+    
+    func setupConstraints() {
+        
+        viewTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(padding * 5)
+            make.centerX.equalTo(view.center.x)
+            make.height.equalTo(50)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(padding * 10)
+            make.bottom.equalTo(view.snp.bottom)
+            make.leading.equalToSuperview().offset(padding * 6)
+            make.trailing.equalToSuperview().offset(-padding * 6)
+        }
+        
+    }
+    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+}
+
+extension FavoritesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return spots.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
+        cell.configure(for: spots[indexPath.row])
+        cell.selectionStyle = .none
+        return cell
+    }
+     
+}
+
+extension FavoritesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 175
+    }
+    
 }

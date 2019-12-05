@@ -9,5 +9,6 @@ target 'Spots' do
   pod 'Alamofire'
   pod 'SnapKit'
   pod 'Hero'
+  pod 'SwiftyJSON'
 
 end

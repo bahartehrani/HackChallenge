@@ -17,8 +17,9 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.barTintColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
+        tabBar.barTintColor = UIColor(red: 27/255, green: 26/255, blue: 46/255, alpha: 1.0)
         tabBar.tintColor = .lightGray
+        tabBar.isTranslucent = false
         
         let SSViewController = StudySpotsViewController()
         SSViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
