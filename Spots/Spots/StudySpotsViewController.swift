@@ -37,9 +37,9 @@ class StudySpotsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spot1 = Spot(name: "Carrot1")
-        let spot2 = Spot(name: "Carrot2")
-        let spot3 = Spot(name: "Carrot3")
+        let spot1 = Spot(name: "Carrot1", isFav: true)
+        let spot2 = Spot(name: "Carrot2", isFav: false)
+        let spot3 = Spot(name: "Carrot3", isFav: false)
         spots = [spot1, spot2, spot3]
         
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
@@ -171,5 +171,11 @@ extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let spot = spots[indexPath.row]
+//        let cell = tableView.cellForRow(at: indexPath) as! SpotsTableViewCell
+//        spot.isFavorite.toggle()
+//        cell.toggleHeart(for: spot.isFavorite)
+//    }
     
 }

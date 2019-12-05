@@ -13,7 +13,7 @@ class SpotsTableViewCell: UITableViewCell {
     let padding : CGFloat = 5
     var label : UILabel!
     var spotImage : UIImageView!
-    var heartImageView : UIImageView!
+    var heartImageView : UIButton!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,7 +32,9 @@ class SpotsTableViewCell: UITableViewCell {
         //image.image = UIImage(named: test)
         contentView.addSubview(spotImage)
         
-        heartImageView = UIImageView(image: UIImage(named: "heart"))
+        heartImageView = UIButton()
+        heartImageView.setImage(UIImage(named: "heart"), for: .normal)
+//        heartImageView.addTarget(self, action: #selector(toggleHeart(for: true)), for: .touchUpInside)
         heartImageView.contentMode = .scaleAspectFit
         heartImageView.isHidden = true
         contentView.addSubview(heartImageView)
@@ -45,16 +47,22 @@ class SpotsTableViewCell: UITableViewCell {
 
     }
     
+    @objc func toggleHeart(for isFavorite: Bool) {
+        heartImageView.isHidden = !isFavorite
+    }
+    
     func setupConstraints() {
     
         label.snp.makeConstraints { make in
-            make.bottom.leading.equalToSuperview()
-            make.width.equalTo(padding * 4)
+            make.bottom.leading.equalToSuperview().offset(padding * 2)
+            make.width.equalTo(padding * 15)
+            
         }
         
         heartImageView.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview()
+            make.top.trailing.equalToSuperview().offset(padding * 2)
             make.width.equalTo(padding * 4)
+            make.height.equalTo(padding * 4)
         }
         
         
