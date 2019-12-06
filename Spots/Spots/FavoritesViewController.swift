@@ -33,6 +33,8 @@ class FavoritesViewController: UIViewController {
         tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
+
+
         
         setupConstraints()
         
