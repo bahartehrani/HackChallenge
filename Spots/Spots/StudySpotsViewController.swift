@@ -76,15 +76,14 @@ class StudySpotsViewController: UIViewController {
         view.addSubview(tableView)
         
         categories = ["Open", "Closed", "Quiet", "North", "West", "Central"]
-<<<<<<< HEAD
 
-=======
+
         
 //        self.tabBarController?.tabBar.items?[0].image = UIImage(named: "greyBooks")
 //        self.tabBarController?.tabBar.items?[1].image = UIImage(named: "greyEvents")
 //        self.tabBarController?.tabBar.items?[2].image = UIImage(named: "greyFavorites")
         
->>>>>>> 3680cea2e57999de0f1737198ea62086747fc305
+
         setupConstraints()
         
     }
