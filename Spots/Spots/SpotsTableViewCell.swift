@@ -14,6 +14,7 @@ class SpotsTableViewCell: UITableViewCell {
     var label : UILabel!
     var spotImage : UIImageView!
     var heartImageView : UIButton!
+    var pinkOrGray : Bool!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,10 +34,11 @@ class SpotsTableViewCell: UITableViewCell {
         contentView.addSubview(spotImage)
         
         heartImageView = UIButton()
-        heartImageView.setImage(UIImage(named: "heart"), for: .normal)
-//        heartImageView.addTarget(self, action: #selector(toggleHeart(for: true)), for: .touchUpInside)
+        heartImageView.setImage(UIImage(named: "greyHeart"), for: .normal)
+        pinkOrGray = false
+        heartImageView.addTarget(self, action: #selector(toggleHeart), for: .touchUpInside)
+        heartImageView.translatesAutoresizingMaskIntoConstraints = false
         heartImageView.contentMode = .scaleAspectFit
-        heartImageView.isHidden = true
         contentView.addSubview(heartImageView)
         
         setupConstraints()
@@ -44,27 +46,37 @@ class SpotsTableViewCell: UITableViewCell {
     
     func configure(for spot: Spot) {
         label.text = spot.name
-
+        spot.isFavorite = pinkOrGray
     }
     
-    @objc func toggleHeart(for isFavorite: Bool) {
-        heartImageView.isHidden = !isFavorite
+    @objc func toggleHeart() {
+        if (!pinkOrGray) {
+            heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)
+        }
+        else {
+            heartImageView.setImage(UIImage(named: "greyHeart"), for: .normal)
+        }
+        pinkOrGray = !pinkOrGray
+        
+        
     }
     
     func setupConstraints() {
     
-        label.snp.makeConstraints { make in
-            make.bottom.leading.equalToSuperview().offset(padding * 2)
-            make.width.equalTo(padding * 15)
-            
-        }
+        // TODO: constraint w snp messes up table view
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            label.heightAnchor.constraint(equalToConstant: 20),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 2)
+        ])
         
-        heartImageView.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().offset(padding * 2)
-            make.width.equalTo(padding * 4)
-            make.height.equalTo(padding * 4)
-        }
-        
+        NSLayoutConstraint.activate([
+            heartImageView.heightAnchor.constraint(equalToConstant: 20),
+            heartImageView.widthAnchor.constraint(equalToConstant: 23),
+                        heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 4)
+        ])
+
         
     }
     
@@ -74,3 +86,5 @@ class SpotsTableViewCell: UITableViewCell {
     }
     
 }
+
+

@@ -37,7 +37,7 @@ class StudySpotsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spot1 = Spot(name: "Carrot1", isFav: true)
+        let spot1 = Spot(name: "Carrot1", isFav: false)
         let spot2 = Spot(name: "Carrot2", isFav: false)
         let spot3 = Spot(name: "Carrot3", isFav: false)
         spots = [spot1, spot2, spot3]
@@ -75,9 +75,16 @@ class StudySpotsViewController: UIViewController {
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
-
         categories = ["Open", "Closed", "Quiet", "North", "West", "Central"]
+<<<<<<< HEAD
+
+=======
         
+//        self.tabBarController?.tabBar.items?[0].image = UIImage(named: "greyBooks")
+//        self.tabBarController?.tabBar.items?[1].image = UIImage(named: "greyEvents")
+//        self.tabBarController?.tabBar.items?[2].image = UIImage(named: "greyFavorites")
+        
+>>>>>>> 3680cea2e57999de0f1737198ea62086747fc305
         setupConstraints()
         
     }
@@ -85,7 +92,29 @@ class StudySpotsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        tableView.reloadData()
+        collectionView.reloadData()
+
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        addSpotToSharedFaves()
+        tableView.reloadData()
+    }
+    
+    
+    func addSpotToSharedFaves() {
+        FaveSpots.sharedFaveSpots.removeAll()
+        for s in spots {
+            if(s.isFavorite) {
+                print(FaveSpots.sharedFaveSpots)
+                FaveSpots.sharedFaveSpots.append(s)
+            }
+        }
+    }
+
     
     func setupConstraints() {
         collectionView.snp.makeConstraints { make in
@@ -112,6 +141,7 @@ class StudySpotsViewController: UIViewController {
     }
 
 }
+
 
 extension StudySpotsViewController : UICollectionViewDataSource {
     
@@ -141,8 +171,6 @@ extension StudySpotsViewController : UICollectionViewDelegateFlowLayout {
     
 }
 
-
-
 extension StudySpotsViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -161,6 +189,7 @@ extension StudySpotsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
         cell.configure(for: spots[indexPath.row])
+        addSpotToSharedFaves()
         cell.selectionStyle = .none
         return cell
     }
@@ -171,11 +200,6 @@ extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let spot = spots[indexPath.row]
-//        let cell = tableView.cellForRow(at: indexPath) as! SpotsTableViewCell
-//        spot.isFavorite.toggle()
-//        cell.toggleHeart(for: spot.isFavorite)
-//    }
+    
     
 }

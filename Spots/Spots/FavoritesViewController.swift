@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController {
     let padding : CGFloat = 8
     var viewTitle : UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
@@ -33,6 +34,8 @@ class FavoritesViewController: UIViewController {
         tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
+
+
         
         setupConstraints()
         
@@ -52,15 +55,20 @@ class FavoritesViewController: UIViewController {
             make.leading.equalToSuperview().offset(padding * 6)
             make.trailing.equalToSuperview().offset(-padding * 6)
         }
-        
     }
     
+    @objc func updateFaves() {
+        faveSpots = FaveSpots.sharedFaveSpots
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateFaves()
         navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
+        tableView.reloadData()
+    } 
 }
+
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,6 +77,7 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
+        
         cell.configure(for: faveSpots[indexPath.row])
         cell.selectionStyle = .none
         return cell
