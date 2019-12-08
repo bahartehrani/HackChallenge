@@ -12,7 +12,7 @@ class DetailedSpotViewController: UIViewController {
     
     var tableView: UITableView!
     let reuseIdentifier = "detailedCellReuse"
-    let cellHeight: CGFloat = 250
+    let cellHeight: CGFloat = 200
     var rows : [Detailed] = []
     let padding : CGFloat = 8
 

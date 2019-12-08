@@ -37,6 +37,9 @@ class StudySpotsViewController: UIViewController {
     var origin : Bool = true
     var selectedSpots : [Spot] = []
     
+    //gradient
+    var gradient: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +79,10 @@ class StudySpotsViewController: UIViewController {
         tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
+        
+        gradient = UIImageView(image: UIImage(named: "Gradient"))
+        gradient.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gradient)
         
         categories = ["open", "closed", "quiet", "collaborative", "north", "west", "central"]
         
@@ -139,6 +146,12 @@ class StudySpotsViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom)
             make.leading.equalToSuperview().offset(padding * 6)
             make.trailing.equalToSuperview().offset(-padding * 6)
+        }
+        
+        gradient.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.height.equalTo(100)
+            make.width.equalToSuperview()
         }
         
     }
