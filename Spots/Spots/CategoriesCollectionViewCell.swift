@@ -21,7 +21,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         category = UILabel()
         category.textColor = .white
         category.textAlignment = .center
-        category.font = UIFont.boldSystemFont(ofSize: 12.0)
+        category.font = UIFont.boldSystemFont(ofSize: 10.0)
         category.layer.masksToBounds = true
         category.layer.cornerRadius = 12
         category.layer.backgroundColor = UIColor(red: 27/255, green: 26/255, blue: 46/255, alpha: 1.0).cgColor

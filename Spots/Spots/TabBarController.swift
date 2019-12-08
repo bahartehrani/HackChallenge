@@ -18,23 +18,21 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         tabBar.barTintColor = UIColor(red: 27/255, green: 26/255, blue: 46/255, alpha: 1.0)
-        tabBar.tintColor = .lightGray
+        tabBar.tintColor = UIColor(red: 208/255, green: 84/255, blue: 128/255, alpha: 1.0)
         tabBar.isTranslucent = false
         
         let SSViewController = StudySpotsViewController()
-        SSViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        SSViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "greyBook"), selectedImage: UIImage(named: "pinkBook"))
         
         let DSSViewController = DetailedSpotViewController()
-        DSSViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        DSSViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "greyEvent"), selectedImage: UIImage(named: "pinkEvent"))
         
         let FViewController = FavoritesViewController()
-        FViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        FViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "greyHeart"), selectedImage: UIImage(named: "pinkHeart"))
         
         let tabBarList = [SSViewController, DSSViewController, FViewController]
         
         viewControllers = tabBarList
-
-        
     }
 
 }

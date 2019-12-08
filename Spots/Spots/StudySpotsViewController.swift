@@ -51,7 +51,6 @@ class StudySpotsViewController: UIViewController {
         viewTitle.font = UIFont.boldSystemFont(ofSize: 32.0)
         view.addSubview(viewTitle)
         
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = padding
@@ -75,13 +74,8 @@ class StudySpotsViewController: UIViewController {
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
-        categories = ["Open", "Closed", "Quiet", "North", "West", "Central"]
+        categories = ["Open", "Closed", "Quiet", "Collaborative", "North", "West", "Central"]
 
-
-        
-//        self.tabBarController?.tabBar.items?[0].image = UIImage(named: "greyBooks")
-//        self.tabBarController?.tabBar.items?[1].image = UIImage(named: "greyEvents")
-//        self.tabBarController?.tabBar.items?[2].image = UIImage(named: "greyFavorites")
         
 
         setupConstraints()
