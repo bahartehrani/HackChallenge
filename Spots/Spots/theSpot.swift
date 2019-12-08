@@ -10,6 +10,7 @@ import Foundation
 
 class theSpot {
     
-    static var sharedSpot = Spot(name: "", isFav: false)
+    static var sharedSpot = Spot(name: "")
+    
     
 }
