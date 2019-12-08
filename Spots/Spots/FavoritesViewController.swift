@@ -15,7 +15,9 @@ class FavoritesViewController: UIViewController {
     var faveSpots : [Spot] = []
     let padding : CGFloat = 8
     var viewTitle : UILabel!
-    
+    //gradient
+    var gradient: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,10 @@ class FavoritesViewController: UIViewController {
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
+        gradient = UIImageView(image: UIImage(named: "Gradient"))
+        gradient.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gradient)
+        
         setupConstraints()
         
     }
@@ -53,6 +59,12 @@ class FavoritesViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom)
             make.leading.equalToSuperview().offset(padding * 6)
             make.trailing.equalToSuperview().offset(-padding * 6)
+        }
+        
+        gradient.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.height.equalTo(100)
+            make.width.equalToSuperview()
         }
     }
     
