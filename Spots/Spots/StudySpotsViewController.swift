@@ -33,12 +33,14 @@ class StudySpotsViewController: UIViewController {
     let reuseIdentifier = "spotsCellReuse"
     
     var spots : [Spot] = []
+    var notSelectedSpots : [Spot] = []
+    var selectedSpots : [Spot] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spot1 = Spot(name: "Carrot1", isFav: false)
-        let spot2 = Spot(name: "Carrot2", isFav: false)
+        let spot1 = Spot(name: "Carrot1", isFav: false, tags: ["Open","North"], numberFavorited: 0, openClosed: false, resources: [], hours: [])
+        let spot2 = Spot(name: "Carrot2", isFav: false, tags: ["Closed","West"], numberFavorited: 0, openClosed: false, resources: [], hours: [])
         let spot3 = Spot(name: "Carrot3", isFav: false)
         spots = [spot1, spot2, spot3]
         
@@ -75,9 +77,7 @@ class StudySpotsViewController: UIViewController {
         view.addSubview(tableView)
         
         categories = ["Open", "Closed", "Quiet", "Collaborative", "North", "West", "Central"]
-
         
-
         setupConstraints()
         
     }
@@ -167,21 +167,52 @@ extension StudySpotsViewController : UICollectionViewDelegateFlowLayout {
 extension StudySpotsViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("idk ughhh")
+        let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
+        cell.clickConfigure(for: categories[indexPath.row])
+        print(cell.isSelect)
+        let search = categories[indexPath.row]
         
-        let selectedFilter = categories[indexPath.row]
-        selectedFilters.append(selectedFilter)
-    
+        if(cell.isSelect) {
+            
+            for s in spots {
+                
+                if(!s.tags.contains(search)) {
+                    notSelectedSpots.append(s)
+                }
+                else {
+                    selectedSpots.append(s)
+                }
+                
+            }
+            
+        }
+        else {
+            
+            for s in spots {
+                
+                if(s.tags.contains(search)) {
+                    notSelectedSpots.append(s)
+                }
+                else {
+                    selectedSpots.append(s)
+                }
+                
+            }
+             
+        }
+        tableView.reloadData()
     }
 }
 
 extension StudySpotsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spots.count
+        return selectedSpots.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
-        cell.configure(for: spots[indexPath.row])
+        cell.configure(for: selectedSpots[indexPath.row])
         addSpotToSharedFaves()
         cell.selectionStyle = .none
         return cell
@@ -193,6 +224,4 @@ extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
     }
-    
-    
 }

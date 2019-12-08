@@ -45,7 +45,7 @@ class SpotsTableViewCell: UITableViewCell {
     }
     
     func configure(for spot: Spot) {
-        label.text = spot.name
+        label.text = spot.title
         spot.isFavorite = pinkOrGray
     }
     

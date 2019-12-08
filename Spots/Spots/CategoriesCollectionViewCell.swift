@@ -12,6 +12,7 @@ import SnapKit
 class CategoriesCollectionViewCell: UICollectionViewCell {
     
     var category : UILabel!
+    var isSelect : Bool = false
     
     let padding : CGFloat = 8
     
@@ -19,8 +20,9 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         category = UILabel()
-        category.textColor = .white
+        category.textColor = .gray
         category.textAlignment = .center
+        
         category.font = UIFont.boldSystemFont(ofSize: 10.0)
         category.layer.masksToBounds = true
         category.layer.cornerRadius = 12
@@ -32,17 +34,31 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     }
     
     func setupConstraints() {
-        
-
         category.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        
     }
+    
     
     func configure(for cat : String) {
         category.text = cat
+        if(isSelect) {
+            category.textColor = .systemPink
+        }
+        else {
+            category.textColor = .systemGray
+        }
+    }
+    
+    func clickConfigure(for cat : String) {
+        isSelect = !isSelect
+        category.text = cat
+        if(isSelect) {
+            category.textColor = .systemPink
+        }
+        else {
+            category.textColor = .systemGray
+        }
     }
     
     required init?(coder: NSCoder) {
