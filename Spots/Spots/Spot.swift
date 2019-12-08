@@ -16,6 +16,7 @@ class Spot {
     var openClosed : Bool
     var resources : [String]
     var hours : [String]
+    var tagsSelected : Int
 
     var isFavorite : Bool
     
@@ -28,6 +29,7 @@ class Spot {
         openClosed = false
         resources = []
         hours = []
+        tagsSelected = 0
     }
     
     init(name: String, isFav: Bool, tags: [String], numberFavorited: Int, openClosed: Bool, resources: [String], hours: [String]) {
@@ -38,6 +40,11 @@ class Spot {
         self.openClosed = openClosed
         self.resources = resources
         self.hours = hours
+        self.tagsSelected = 0
+    }
+    
+    func equals(spot: Spot) -> Bool {
+        return self.title == spot.title
     }
     
     

@@ -29,6 +29,8 @@ class SpotsTableViewCell: UITableViewCell {
         
         spotImage = UIImageView()
         spotImage.clipsToBounds = true
+        // rounded edges
+        spotImage.layer.cornerRadius = 8.0
         spotImage.contentMode = .scaleAspectFit
         //image.image = UIImage(named: test)
         contentView.addSubview(spotImage)

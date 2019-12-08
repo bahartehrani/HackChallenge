@@ -177,27 +177,37 @@ extension StudySpotsViewController : UICollectionViewDelegate {
             
             for s in spots {
                 
-                if(!s.tags.contains(search)) {
-                    notSelectedSpots.append(s)
+                if(s.tags.contains(search)) {
+                    s.tagsSelected += 1
+                    print("while adding: ", s.tagsSelected)
+                    var flag = true
+                    for ss in selectedSpots {
+                        
+                        if (ss.equals(spot: s)) {
+                            flag = false
+                        }
+                    }
+                    
+                    if (flag) {
+                        selectedSpots.append(s)
+                    }
                 }
-                else {
-                    selectedSpots.append(s)
-                }
-                
             }
             
         }
         else {
             
-            for s in spots {
-                
-                if(s.tags.contains(search)) {
-                    notSelectedSpots.append(s)
+            var index = 0
+            while (index < selectedSpots.count) {
+                selectedSpots[index].tagsSelected -= 1
+                print("after subtracting: ",selectedSpots[index].tagsSelected)
+                if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected == 0) {
+                    selectedSpots.remove(at: index)
                 }
-                else {
-                    selectedSpots.append(s)
-                }
-                
+//                else if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected > 0) {
+//                    selectedSpots[index].tagsSelected -= 1
+//                }
+                index += 1
             }
              
         }
