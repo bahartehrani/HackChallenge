@@ -13,10 +13,13 @@ class DetailedSpotViewController: UIViewController {
     var tableView: UITableView!
     let reuseIdentifier = "detailedCellReuse"
     let cellHeight: CGFloat = 250
-    var rows : [String] = ["hours", "popularTimes", "resources"]
+    var rows : [Detailed] = []
+    let padding : CGFloat = 8
 
     var viewTitle : UILabel!
     var zoomedPic : UIImageView!
+    
+    
     
 //    var hours : UILabel!
 //
@@ -25,12 +28,16 @@ class DetailedSpotViewController: UIViewController {
 //
 //    var resName : UILabel!
 //    var resources : UILabel!
-    
-    let padding : CGFloat = 8
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let d1 = Detailed(title: "Hours", imageTitle: "testing")
+        let d2 = Detailed(title: "Popular Times", imageTitle: "testing")
+        let d3 = Detailed(title: "Resources", imageTitle: "testing")
+        rows = [d1, d2, d3]
+        
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
         viewTitle = UILabel()
@@ -134,7 +141,7 @@ extension DetailedSpotViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =
         tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! DetailedViewTableViewCell
-        //cell.configure(for: rows[indexPath.row])
+        cell.configure(for: rows[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

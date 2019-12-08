@@ -10,7 +10,7 @@ import UIKit
 
 class DetailedViewTableViewCell: UITableViewCell {
 
-    var title : UILabel!
+    var titleLabel : UILabel!
     
     var popTimes : UILabel!
     var popTimesImage : UIImageView!
@@ -25,19 +25,19 @@ class DetailedViewTableViewCell: UITableViewCell {
         
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
-        title = UILabel()
-        title.textAlignment = .left
-        title.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
-        title.text = "Hours"
-        title.font = UIFont.boldSystemFont(ofSize: 15.0)
-        contentView.addSubview(title)
+        titleLabel = UILabel()
+        titleLabel.textAlignment = .left
+        titleLabel.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
+        titleLabel.text = "Hours"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
+        contentView.addSubview(titleLabel)
 
                 
-        //setupConstraints()
+        setupConstraints()
     }
     
     func setupConstraints() {
-        title.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding)
             make.leading.equalToSuperview().offset(padding)
         }
@@ -45,7 +45,8 @@ class DetailedViewTableViewCell: UITableViewCell {
     }
     
     func configure (for detail: Detailed) {
-        title.text = detail.title
+        titleLabel.text = detail.title
+        
     }
     
     required init?(coder: NSCoder) {
