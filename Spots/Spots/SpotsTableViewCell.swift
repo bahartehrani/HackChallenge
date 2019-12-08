@@ -10,7 +10,7 @@ import SnapKit
 
 class SpotsTableViewCell: UITableViewCell {
 
-    var thisSpot : Spot = Spot(name: "", isFav: false)
+    var thisSpot : Spot = Spot(name: "")
     let padding : CGFloat = 5
     var label : UILabel!
     var spotImage : UIImageView!
@@ -21,7 +21,6 @@ class SpotsTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
-        
         
         label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -50,7 +49,7 @@ class SpotsTableViewCell: UITableViewCell {
     
     func configure(for spotx: Spot) {
         thisSpot = spotx
-        label.text = spotx.title
+        label.text = spotx.name
         //spotx.isFavorite = pinkOrGray
         pinkOrGray = spotx.isFavorite
         if(!spotx.isFavorite) {
@@ -60,7 +59,7 @@ class SpotsTableViewCell: UITableViewCell {
     
     func faveConfigure(for spot: Spot) {
         thisSpot = spot
-        label.text = spot.title
+        label.text = spot.name
         spot.isFavorite = true
         pinkOrGray = true
         heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)

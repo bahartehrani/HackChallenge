@@ -8,46 +8,77 @@
 
 import Foundation
 
+struct SpotResponse: Codable {
+    var success : Bool
+    var data : [readSpot]
+}
+
+struct readSpot : Codable {
+    
+    var id: Int
+    var name : String
+    var numOfFavorited : Int
+    var tags : [String]
+    var opening : String
+    var closing : String
+    var isopening : Bool
+    var imageurl : String
+    
+}
+
 class Spot {
     
-    var title : String
+    var readInfo : readSpot?
+    var id: Int
+    var name : String
+    var numOfFavorited : Int
     var tags : [String]
-    var numberFavorited : Int
-    var openClosed : Bool
+    var opening : String
+    var closing : String
+    var isopening : Bool
+    var imageurl : String
+    
     var resources : [String]
-    var hours : [String]
     var tagsSelected : Int
-
     var isFavorite : Bool
     
     
-    init(name: String, isFav: Bool) {
-        self.title = name
-        isFavorite = isFav
-        tags = []
-        numberFavorited = 0
-        openClosed = false
+    init(readInfo: readSpot) {
+        self.readInfo = readInfo
+        
+        self.id = readInfo.id
+        self.name = readInfo.name
+        self.tags = readInfo.tags
+        self.numOfFavorited = readInfo.numOfFavorited
+        self.isopening = readInfo.isopening
+        self.opening = readInfo.opening
+        self.closing = readInfo.closing
+        isFavorite = false
         resources = []
-        hours = []
         tagsSelected = 0
+        imageurl = ""
     }
     
-    init(name: String, isFav: Bool, tags: [String], numberFavorited: Int, openClosed: Bool, resources: [String], hours: [String]) {
-        self.title = name
-        self.isFavorite = isFav
-        self.tags = tags
-        self.numberFavorited = numberFavorited
-        self.openClosed = openClosed
-        self.resources = resources
-        self.hours = hours
-        self.tagsSelected = 0
+    init (name: String) {
+        self.id = 0
+        self.name = name
+        self.tags = []
+        self.numOfFavorited = 0
+        self.isopening = false
+        self.opening = ""
+        self.closing = ""
+        isFavorite = false
+        resources = []
+        tagsSelected = 0
+        imageurl = ""
     }
+    
     
     func equals(spot: Spot) -> Bool {
-        return self.title == spot.title
+        return self.name == spot.name
     }
-    
-    
     
     
 }
+
+
