@@ -43,7 +43,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     func configure(for cat : String) {
         category.text = cat
         if(isSelect) {
-            category.textColor = .systemPink
+            category.textColor = UIColor(red: 183/255, green: 65/255, blue: 136/255, alpha: 1.0)
         }
         else {
             category.textColor = .systemGray
@@ -54,7 +54,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         isSelect = !isSelect
         category.text = cat
         if(isSelect) {
-            category.textColor = .systemPink
+            category.textColor = UIColor(red: 183/255, green: 65/255, blue: 136/255, alpha: 1.0)
         }
         else {
             category.textColor = .systemGray

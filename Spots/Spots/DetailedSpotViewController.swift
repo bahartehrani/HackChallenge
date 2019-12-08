@@ -41,6 +41,7 @@ class DetailedSpotViewController: UIViewController {
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
         viewTitle = UILabel()
+        viewTitle.text = theSpot.sharedSpot.name
         viewTitle.textAlignment = .center
         viewTitle.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
         viewTitle.text = theSpot.sharedSpot.name

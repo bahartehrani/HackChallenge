@@ -81,7 +81,7 @@ class StudySpotsViewController: UIViewController {
         
         setupConstraints()
         getSpots()
-        convertSpot()
+        
         tableView.reloadData()
         print(spots.count)
         
@@ -91,7 +91,7 @@ class StudySpotsViewController: UIViewController {
         print(readSpotsX.count)
         for x in readSpotsX {
             let newSpot = Spot(readInfo: x)
-            print(newSpot)
+            print(newSpot.isopening)
             spots.append(newSpot)
         }
     }
@@ -149,7 +149,8 @@ class StudySpotsViewController: UIViewController {
             
             for x in self.readSpotsX {
                 let newSpot = Spot(readInfo: x)
-                print(newSpot)
+                print(x)
+                print(newSpot.isopening)
                 self.spots.append(newSpot)
             }
             
@@ -303,6 +304,6 @@ extension StudySpotsViewController: UITableViewDataSource {
 
 extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return 200
     }
 }

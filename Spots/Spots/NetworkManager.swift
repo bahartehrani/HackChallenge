@@ -33,7 +33,24 @@ class NetworkManager {
                 print(error.localizedDescription)
             }
             
-            
         }
+    }
+    
+    static func fetchSpotImage(imageURL: String, completion: @escaping (UIImage) -> Void) {
+        
+        Alamofire.request(imageURL, method: .get).validate().responseData { response in
+            switch response.result {
+                
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(image)
+                } else {
+                    print("Invalid image data")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    
     }
 }
