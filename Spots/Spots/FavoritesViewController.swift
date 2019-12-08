@@ -21,6 +21,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
+        
         viewTitle = UILabel()
         viewTitle.textAlignment = .center
         viewTitle.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
@@ -34,8 +35,6 @@ class FavoritesViewController: UIViewController {
         tableView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         tableView.register(SpotsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
-
-
         
         setupConstraints()
         
@@ -57,13 +56,12 @@ class FavoritesViewController: UIViewController {
         }
     }
     
-    @objc func updateFaves() {
+    func updateFaves() {
         faveSpots = FaveSpots.sharedFaveSpots
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
         updateFaves()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         tableView.reloadData()
@@ -79,10 +77,11 @@ extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
         
-        cell.configure(for: faveSpots[indexPath.row])
+        cell.faveConfigure(for: faveSpots[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
+
      
 }
 

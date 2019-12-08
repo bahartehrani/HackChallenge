@@ -91,22 +91,16 @@ class StudySpotsViewController: UIViewController {
 
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        addSpotToSharedFaves()
-        tableView.reloadData()
-    }
     
-    
-    func addSpotToSharedFaves() {
-        FaveSpots.sharedFaveSpots.removeAll()
-        for s in spots {
-            if(s.isFavorite) {
-                print(FaveSpots.sharedFaveSpots)
-                FaveSpots.sharedFaveSpots.append(s)
-            }
-        }
-    }
+//    func addSpotToSharedFaves() {
+//        FaveSpots.sharedFaveSpots.removeAll()
+//        for s in spots {
+//            if(s.isFavorite) {
+//                print(FaveSpots.sharedFaveSpots)
+//                FaveSpots.sharedFaveSpots.append(s)
+//            }
+//        }
+//    }
 
     
     func setupConstraints() {
@@ -246,10 +240,25 @@ extension StudySpotsViewController: UITableViewDataSource {
             cell.configure(for: selectedSpots[indexPath.row])
         }
         
-        addSpotToSharedFaves()
         cell.selectionStyle = .none
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(origin) {
+            theSpot.sharedSpot = spots[indexPath.row]
+        }
+        else {
+            theSpot.sharedSpot = selectedSpots[indexPath.row]
+        }
+        
+        tabBarController?.selectedIndex = 1
+        tableView.reloadData()
+    }
+    
+    
      
 }
 

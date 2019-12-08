@@ -29,7 +29,7 @@ class DetailedSpotViewController: UIViewController {
         viewTitle = UILabel()
         viewTitle.textAlignment = .center
         viewTitle.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
-        viewTitle.text = "Spot"
+        viewTitle.text = theSpot.sharedSpot.title
         viewTitle.font = UIFont.boldSystemFont(ofSize: 32.0)
         view.addSubview(viewTitle)
         
@@ -38,6 +38,12 @@ class DetailedSpotViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewTitle.text = theSpot.sharedSpot.title
+        
+        
+        
+        
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
