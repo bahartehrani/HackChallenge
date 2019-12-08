@@ -33,7 +33,7 @@ class StudySpotsViewController: UIViewController {
     let reuseIdentifier = "spotsCellReuse"
     
     var spots : [Spot] = []
-    var notSelectedSpots : [Spot] = []
+    var origin : Bool = true
     var selectedSpots : [Spot] = []
     
     override func viewDidLoad() {
@@ -167,10 +167,10 @@ extension StudySpotsViewController : UICollectionViewDelegateFlowLayout {
 extension StudySpotsViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("idk ughhh")
+        origin = false
         let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
         cell.clickConfigure(for: categories[indexPath.row])
-        print(cell.isSelect)
+        
         let search = categories[indexPath.row]
         
         if(cell.isSelect) {
@@ -199,30 +199,53 @@ extension StudySpotsViewController : UICollectionViewDelegate {
             
             var index = 0
             while (index < selectedSpots.count) {
-                selectedSpots[index].tagsSelected -= 1
+                if(selectedSpots[index].tags.contains(search)) {
+                    selectedSpots[index].tagsSelected -= 1
+                }
+                
                 print("after subtracting: ",selectedSpots[index].tagsSelected)
                 if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected == 0) {
                     selectedSpots.remove(at: index)
                 }
-//                else if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected > 0) {
-//                    selectedSpots[index].tagsSelected -= 1
-//                }
+
                 index += 1
             }
              
         }
+        
+        var checker = true
+        for ss in  selectedSpots {
+            if(ss.tagsSelected != 0) {
+                checker = false
+            }
+        }
+        if(checker) {
+            origin = true
+        }
+        
         tableView.reloadData()
     }
 }
 
 extension StudySpotsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedSpots.count
+        if(origin) {
+            return spots.count
+        }
+        else {
+            return selectedSpots.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SpotsTableViewCell
-        cell.configure(for: selectedSpots[indexPath.row])
+        if(origin) {
+            cell.configure(for: spots[indexPath.row])
+        }
+        else {
+            cell.configure(for: selectedSpots[indexPath.row])
+        }
+        
         addSpotToSharedFaves()
         cell.selectionStyle = .none
         return cell
