@@ -84,7 +84,7 @@ class StudySpotsViewController: UIViewController {
         gradient.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(gradient)
         
-        categories = ["open", "closed", "quiet", "collaborative", "north", "west", "central"]
+        categories = ["Open", "Closed", "Quiet", "Collaborative", "North", "West", "Central"]
         
         setupConstraints()
         getSpots()
