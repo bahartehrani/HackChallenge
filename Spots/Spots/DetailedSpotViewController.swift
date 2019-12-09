@@ -17,6 +17,7 @@ class DetailedSpotViewController: UIViewController {
     var zoomedPic : UIImageView!
 
     var hours : UILabel!
+    var showHours : UILabel!
 
     var popTimes : UILabel!
     var popTimesImage : UIImageView!
@@ -44,10 +45,18 @@ class DetailedSpotViewController: UIViewController {
         hours = UILabel()
         hours.textAlignment = .left
         hours.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
-        hours.text = "Hours"
+        hours.text = "Today's Hours"
         viewTitle.font = UIFont.boldSystemFont(ofSize: 15.0)
         view.addSubview(hours)
-
+        
+        showHours = UILabel()
+        showHours.textAlignment = .left
+        showHours.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
+        showHours.text = theSpot.sharedSpot.opening + " - " + theSpot.sharedSpot.closing
+        showHours.font = UIFont.boldSystemFont(ofSize: 28.0)
+        view.addSubview(showHours)
+        
+        
         popTimes = UILabel()
         popTimes.textAlignment = .left
         popTimes.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
@@ -68,7 +77,7 @@ class DetailedSpotViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewTitle.text = theSpot.sharedSpot.name
-        
+        showHours.text = theSpot.sharedSpot.opening + " - " + theSpot.sharedSpot.closing
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -89,6 +98,11 @@ class DetailedSpotViewController: UIViewController {
         hours.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding * 35)
             make.leading.equalToSuperview().offset(padding)
+        }
+        
+        showHours.snp.makeConstraints { make in
+            make.top.equalTo(hours.snp.bottom).offset(padding * 3)
+            make.centerX.equalTo(view.snp.centerX)
         }
 
         popTimes.snp.makeConstraints { make in
