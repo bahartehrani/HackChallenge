@@ -10,7 +10,7 @@ import Foundation
 
 class theSpot {
     
-    static var sharedSpot = Spot(name: "")
+    static var sharedSpot = Spot(name: "Click a Spot for details!")
     
     
 }
