@@ -62,10 +62,10 @@ class Spot {
         self.detailedview_imageurl = readInfo.detailedview_imageurl
         
         if(self.isopening) {
-            self.tags.append("open")
+            self.tags.append("Open")
         }
         else {
-            self.tags.append("closed")
+            self.tags.append("Closed")
         }
         
         
