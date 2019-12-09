@@ -25,7 +25,7 @@ class SpotsTableViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
         label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 19)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
@@ -128,15 +128,15 @@ class SpotsTableViewCell: UITableViewCell {
             
             make.top.equalToSuperview()
             make.centerX.equalTo(contentView.snp.centerX)
-            make.width.equalTo(contentView.snp.width).offset(-padding*5)
-            make.bottom.equalToSuperview()
+            make.width.equalTo(contentView.snp.width).offset(-padding)
+            make.bottom.equalToSuperview().offset(-padding * 2)
             
         }
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 4),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 3),
             label.heightAnchor.constraint(equalToConstant: 20),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 2)
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 4.5)
         ])
         
         NSLayoutConstraint.activate([
@@ -147,10 +147,10 @@ class SpotsTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 3),
+            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 4),
             openCloseLabel.heightAnchor.constraint(equalToConstant: 25),
             openCloseLabel.widthAnchor.constraint(equalToConstant: 60),
-            openCloseLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 2)
+            openCloseLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 3)
         ])
     }
     
