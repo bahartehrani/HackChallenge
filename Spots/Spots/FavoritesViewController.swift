@@ -49,13 +49,13 @@ class FavoritesViewController: UIViewController {
     func setupConstraints() {
         
         viewTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(padding * 5)
+            make.top.equalToSuperview().offset(padding * 7)
             make.centerX.equalTo(view.center.x)
             make.height.equalTo(50)
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(padding * 10)
+            make.top.equalToSuperview().offset(padding * 20)
             make.bottom.equalTo(view.snp.bottom)
             make.leading.equalToSuperview().offset(padding * 6)
             make.trailing.equalToSuperview().offset(-padding * 6)
