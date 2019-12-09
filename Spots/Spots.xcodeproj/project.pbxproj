@@ -21,8 +21,6 @@
 		01B670B22397368300428439 /* SpotsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B670B12397368300428439 /* SpotsTableViewCell.swift */; };
 		01C77A03239D9EBA00BAB14D /* theSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C77A02239D9EB900BAB14D /* theSpot.swift */; };
 		01DB2E7A239AD8D7002D6B20 /* FaveSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DB2E79239AD8D7002D6B20 /* FaveSpots.swift */; };
-		16142C8A239D92EA00BC8CDE /* DetailedViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142C89239D92EA00BC8CDE /* DetailedViewTableViewCell.swift */; };
-		16142C8E239D9E2300BC8CDE /* Detailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16142C8D239D9E2300BC8CDE /* Detailed.swift */; };
 		7FB9738539E32E6B67F6C780 /* Pods_Spots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2197879B7F9DA356DBB4C908 /* Pods_Spots.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +41,6 @@
 		01B670B12397368300428439 /* SpotsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotsTableViewCell.swift; sourceTree = "<group>"; };
 		01C77A02239D9EB900BAB14D /* theSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theSpot.swift; sourceTree = "<group>"; };
 		01DB2E79239AD8D7002D6B20 /* FaveSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaveSpots.swift; sourceTree = "<group>"; };
-		16142C89239D92EA00BC8CDE /* DetailedViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewTableViewCell.swift; sourceTree = "<group>"; };
-		16142C8D239D9E2300BC8CDE /* Detailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detailed.swift; sourceTree = "<group>"; };
 		2197879B7F9DA356DBB4C908 /* Pods_Spots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0227067A98F3C0D474DBF2 /* Pods-Spots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spots.debug.xcconfig"; path = "Target Support Files/Pods-Spots/Pods-Spots.debug.xcconfig"; sourceTree = "<group>"; };
 		7EC45DFA5EC1D08268BD1565 /* Pods-Spots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spots.release.xcconfig"; path = "Target Support Files/Pods-Spots/Pods-Spots.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,17 +80,15 @@
 			isa = PBXGroup;
 			children = (
 				017D281323832609007DD967 /* AppDelegate.swift */,
-				01C77A02239D9EB900BAB14D /* theSpot.swift */,
 				017D282923832E6E007DD967 /* TabBarController.swift */,
-				01DB2E79239AD8D7002D6B20 /* FaveSpots.swift */,
 				017D28272383283B007DD967 /* StudySpotsViewController.swift */,
-				01903E5923833388001548F6 /* FavoritesViewController.swift */,
 				01B670B12397368300428439 /* SpotsTableViewCell.swift */,
-				01B670AB239733AD00428439 /* Spot.swift */,
 				01903E5B238336EE001548F6 /* CategoriesCollectionViewCell.swift */,
 				017D282B2383305B007DD967 /* DetailedSpotViewController.swift */,
-				16142C8D239D9E2300BC8CDE /* Detailed.swift */,
-				16142C89239D92EA00BC8CDE /* DetailedViewTableViewCell.swift */,
+				01903E5923833388001548F6 /* FavoritesViewController.swift */,
+				01C77A02239D9EB900BAB14D /* theSpot.swift */,
+				01DB2E79239AD8D7002D6B20 /* FaveSpots.swift */,
+				01B670AB239733AD00428439 /* Spot.swift */,
 				0186C8E32399A9B4008F612E /* NetworkManager.swift */,
 				017D28192383260A007DD967 /* Assets.xcassets */,
 				017D281E2383260A007DD967 /* LaunchScreen.storyboard */,
@@ -245,7 +239,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0186C8E42399A9B4008F612E /* NetworkManager.swift in Sources */,
-				16142C8E239D9E2300BC8CDE /* Detailed.swift in Sources */,
 				01903E5C238336EE001548F6 /* CategoriesCollectionViewCell.swift in Sources */,
 				01C77A03239D9EBA00BAB14D /* theSpot.swift in Sources */,
 				017D282C2383305B007DD967 /* DetailedSpotViewController.swift in Sources */,
@@ -254,7 +247,6 @@
 				017D28282383283B007DD967 /* StudySpotsViewController.swift in Sources */,
 				01903E5A23833388001548F6 /* FavoritesViewController.swift in Sources */,
 				01B670AC239733AD00428439 /* Spot.swift in Sources */,
-				16142C8A239D92EA00BC8CDE /* DetailedViewTableViewCell.swift in Sources */,
 				017D281423832609007DD967 /* AppDelegate.swift in Sources */,
 				01B670B22397368300428439 /* SpotsTableViewCell.swift in Sources */,
 			);

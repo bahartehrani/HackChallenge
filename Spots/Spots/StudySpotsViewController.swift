@@ -90,15 +90,13 @@ class StudySpotsViewController: UIViewController {
         getSpots()
         
         tableView.reloadData()
-        print(spots.count)
+        
         
     }
     
     func convertSpot() {
-        print(readSpotsX.count)
         for x in readSpotsX {
             let newSpot = Spot(readInfo: x)
-            print(newSpot.isopening)
             spots.append(newSpot)
         }
     }
@@ -162,8 +160,6 @@ class StudySpotsViewController: UIViewController {
             
             for x in self.readSpotsX {
                 let newSpot = Spot(readInfo: x)
-                print(x)
-                print(newSpot.isopening)
                 self.spots.append(newSpot)
             }
             
@@ -217,13 +213,13 @@ extension StudySpotsViewController : UICollectionViewDelegate {
         
         let search = categories[indexPath.row]
         
+        var none = false
         if(cell.isSelect) {
             
             for s in spots {
                 
                 if(s.tags.contains(search)) {
                     s.tagsSelected += 1
-                    print("while adding: ", s.tagsSelected)
                     var flag = true
                     for ss in selectedSpots {
                         
@@ -236,19 +232,33 @@ extension StudySpotsViewController : UICollectionViewDelegate {
                         selectedSpots.append(s)
                     }
                 }
+                else {
+                    none = true
+                }
+                
             }
             
         }
         else {
             
+            if (selectedSpots.count == 0) {
+                
+                for s2 in spots {
+                    
+                    if s2.tags.contains(search) {
+                        s2.tagsSelected -= 1
+                    }
+                    
+                }
+            }
+
             var index = 0
             while (index < selectedSpots.count) {
                 if(selectedSpots[index].tags.contains(search)) {
                     selectedSpots[index].tagsSelected -= 1
                 }
                 
-                print("after subtracting: ",selectedSpots[index].tagsSelected)
-                if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected == 0) {
+                if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected <= 0) {
                     selectedSpots.remove(at: index)
                     index -= 1
                 }
@@ -259,17 +269,15 @@ extension StudySpotsViewController : UICollectionViewDelegate {
         }
         
         var checker = true
-        for ss in  selectedSpots {
+        for ss in selectedSpots {
             if(ss.tagsSelected > 0) {
-                print(ss.name)
-                print(ss.tagsSelected)
                 checker = false
             }
         }
-        if(checker) {
+        if(checker && !none) {
             origin = true
         }
-        
+        none = false
         tableView.reloadData()
     }
 }

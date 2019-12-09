@@ -24,7 +24,7 @@ class NetworkManager {
                 print("test2")
                 if let spotsData = try? jsonDecoder.decode(SpotResponse.self, from: readData) {
                     let suc = spotsData.success
-                    print(suc)
+                    print("test3")
                     let spotsRead = spotsData.data
                     completion(spotsRead)
                 }

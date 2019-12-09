@@ -22,7 +22,8 @@ struct readSpot : Codable {
     var opening : String
     var closing : String
     var isopening : Bool
-    var imageurl : String
+    var listview_imageurl : String
+    var detailedview_imageurl : String
     
 }
 
@@ -36,7 +37,8 @@ class Spot {
     var opening : String
     var closing : String
     var isopening : Bool
-    var imageurl : String
+    var listview_imageurl : String
+    var detailedview_imageurl : String
     
     var resources : [String]
     var tagsSelected : Int
@@ -56,7 +58,17 @@ class Spot {
         isFavorite = false
         resources = []
         tagsSelected = 0
-        imageurl = ""
+        self.listview_imageurl = readInfo.listview_imageurl
+        self.detailedview_imageurl = readInfo.detailedview_imageurl
+        
+        if(self.isopening) {
+            self.tags.append("open")
+        }
+        else {
+            self.tags.append("closed")
+        }
+        
+        
     }
     
     init (name: String) {
@@ -70,7 +82,8 @@ class Spot {
         isFavorite = false
         resources = []
         tagsSelected = 0
-        imageurl = ""
+        listview_imageurl = ""
+        detailedview_imageurl = ""
     }
     
     

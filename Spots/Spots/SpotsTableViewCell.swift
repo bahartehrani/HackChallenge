@@ -25,7 +25,7 @@ class SpotsTableViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
         label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
@@ -35,8 +35,9 @@ class SpotsTableViewCell: UITableViewCell {
         // rounded edges
         spotImage.layer.cornerRadius = 8.0
         spotImage.contentMode = .scaleAspectFit
-        //image.image = UIImage(named: test)
+        
         contentView.addSubview(spotImage)
+        contentView.sendSubviewToBack(spotImage)
         
         heartImageView = UIButton()
         heartImageView.setImage(UIImage(named: "greyHeart"), for: .normal)
@@ -72,7 +73,7 @@ class SpotsTableViewCell: UITableViewCell {
             heartImageView.setImage(UIImage(named: "greyHeart"), for: .normal)
         }
         
-        getSpotImage()
+        spotImage.image = UIImage(named: spotx.name)
     }
     
     func faveConfigure(for spot: Spot) {
@@ -81,16 +82,17 @@ class SpotsTableViewCell: UITableViewCell {
         spot.isFavorite = true
         pinkOrGray = true
         heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)
-        getSpotImage()
+        spotImage.image = UIImage(named: spot.name)
+        //getSpotImage()
     }
     
-    func getSpotImage() {
-        NetworkManager.fetchSpotImage(imageURL: thisSpot.imageurl) { imageSp in
-            DispatchQueue.main.async {
-                self.spotImage.image = imageSp
-            }
-        }
-    }
+//    func getSpotImage() {
+//        NetworkManager.fetchSpotImage(imageURL: thisSpot.listview_imageurl) { imageSp in
+//            DispatchQueue.main.async {
+//                self.spotImage.image = imageSp
+//            }
+//        }
+//    }
 
     @objc func toggleHeart() {
         if (!pinkOrGray) {
@@ -121,27 +123,31 @@ class SpotsTableViewCell: UITableViewCell {
     func setupConstraints() {
     
         // TODO: constraint w snp messes up table view
+        
+        spotImage.snp.makeConstraints { make in
+            
+            make.top.equalToSuperview()
+            make.centerX.equalTo(contentView.snp.centerX)
+            make.width.equalTo(contentView.snp.width).offset(-padding*5)
+            make.bottom.equalToSuperview()
+            
+        }
+        
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 4),
             label.heightAnchor.constraint(equalToConstant: 20),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 2)
         ])
         
         NSLayoutConstraint.activate([
-            spotImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            spotImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-        ])
-        
-        
-        NSLayoutConstraint.activate([
             heartImageView.heightAnchor.constraint(equalToConstant: 20),
             heartImageView.widthAnchor.constraint(equalToConstant: 23),
-                        heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+                        heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 3),
             heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 4)
         ])
         
         NSLayoutConstraint.activate([
-            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 3),
             openCloseLabel.heightAnchor.constraint(equalToConstant: 25),
             openCloseLabel.widthAnchor.constraint(equalToConstant: 60),
             openCloseLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 2)

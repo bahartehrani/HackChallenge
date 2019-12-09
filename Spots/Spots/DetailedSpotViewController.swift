@@ -56,7 +56,6 @@ class DetailedSpotViewController: UIViewController {
         showHours.font = UIFont.boldSystemFont(ofSize: 28.0)
         view.addSubview(showHours)
         
-        
         popTimes = UILabel()
         popTimes.textAlignment = .left
         popTimes.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
@@ -64,6 +63,10 @@ class DetailedSpotViewController: UIViewController {
         viewTitle.font = UIFont.boldSystemFont(ofSize: 15.0)
         view.addSubview(popTimes)
 
+        popTimesImage = UIImageView(image: UIImage(named: "popTimes"))
+        popTimesImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(popTimesImage)
+        
         resources = UILabel()
         resources.textAlignment = .left
         resources.textColor = UIColor(red: 209/255, green: 211/255, blue: 217/255, alpha: 1.0)
@@ -108,6 +111,13 @@ class DetailedSpotViewController: UIViewController {
         popTimes.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding * 50)
             make.leading.equalToSuperview().offset(padding)
+        }
+        
+        popTimesImage.snp.makeConstraints { make in
+            make.top.equalTo(popTimes.snp.bottom).offset(padding * 3)
+            make.width.equalTo(325)
+            make.height.equalTo(140)
+            make.centerX.equalTo(view.snp.centerX)
         }
 
         resources.snp.makeConstraints { make in
