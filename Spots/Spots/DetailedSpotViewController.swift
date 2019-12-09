@@ -80,6 +80,7 @@ class DetailedSpotViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewTitle.text = theSpot.sharedSpot.name
+        viewTitle.font = UIFont.boldSystemFont(ofSize: 28.0)
         showHours.text = theSpot.sharedSpot.opening + " - " + theSpot.sharedSpot.closing
         let nameIm = theSpot.sharedSpot.name + "1"
         zoomedPic.image = UIImage(named: nameIm)
@@ -89,7 +90,7 @@ class DetailedSpotViewController: UIViewController {
     func setupConstraints() {
         
         viewTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(padding * 28.5)
+            make.top.equalToSuperview().offset(padding * 28)
             make.centerX.equalTo(view.center.x)
             make.height.equalTo(50)
         }

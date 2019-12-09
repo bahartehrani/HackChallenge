@@ -16,15 +16,15 @@ class NetworkManager {
     private static var studySpotsImages : [String]!
     
     static func getBackendSpots(completion: @escaping ([readSpot]) -> Void) {
-        print("test")
+        
         Alamofire.request(studySpotsEndpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let readData):
                 let jsonDecoder = JSONDecoder()
-                print("test2")
+                
                 if let spotsData = try? jsonDecoder.decode(SpotResponse.self, from: readData) {
                     let suc = spotsData.success
-                    print("test3")
+                    
                     let spotsRead = spotsData.data
                     completion(spotsRead)
                 }

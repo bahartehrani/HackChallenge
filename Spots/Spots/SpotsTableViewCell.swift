@@ -81,6 +81,12 @@ class SpotsTableViewCell: UITableViewCell {
         label.text = spot.name
         spot.isFavorite = true
         pinkOrGray = true
+        if(spot.isopening) {
+            openCloseLabel.text = "OPEN"
+        }
+        else {
+            openCloseLabel.text = "CLOSED"
+        }
         heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)
         spotImage.image = UIImage(named: spot.name)
         //getSpotImage()
