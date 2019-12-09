@@ -11,6 +11,7 @@ import UIKit
 class DetailedViewTableViewCell: UITableViewCell {
 
     var titleLabel : UILabel!
+    var detailedImageView: UIImageView!
     
     var popTimes : UILabel!
     var popTimesImage : UIImageView!
@@ -31,6 +32,11 @@ class DetailedViewTableViewCell: UITableViewCell {
         titleLabel.text = "Hours"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         contentView.addSubview(titleLabel)
+        
+        detailedImageView = UIImageView(image: UIImage(named: "Testing"))
+        detailedImageView.contentMode = .scaleAspectFit
+        contentView.addSubview(detailedImageView)
+        
 
                 
         setupConstraints()
@@ -41,11 +47,19 @@ class DetailedViewTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(padding)
             make.leading.equalToSuperview().offset(padding)
         }
+        
+        detailedImageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(padding)
+            make.leading.equalToSuperview().offset(padding)
+            make.trailing.equalToSuperview().offset(-padding)
+            make.bottom.equalToSuperview().offset(-padding)
+        }
 
     }
     
     func configure (for detail: Detailed) {
         titleLabel.text = detail.title
+        detailedImageView.image = UIImage(named: detail.imageTitle)
         
     }
     
