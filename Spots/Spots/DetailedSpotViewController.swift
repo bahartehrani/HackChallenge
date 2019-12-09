@@ -81,6 +81,8 @@ class DetailedSpotViewController: UIViewController {
         super.viewWillAppear(animated)
         viewTitle.text = theSpot.sharedSpot.name
         showHours.text = theSpot.sharedSpot.opening + " - " + theSpot.sharedSpot.closing
+        let nameIm = theSpot.sharedSpot.name + "1"
+        zoomedPic.image = UIImage(named: nameIm)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
