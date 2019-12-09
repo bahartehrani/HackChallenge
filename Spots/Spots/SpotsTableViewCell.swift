@@ -25,7 +25,7 @@ class SpotsTableViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
         label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
