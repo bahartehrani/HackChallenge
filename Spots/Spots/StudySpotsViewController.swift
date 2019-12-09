@@ -142,8 +142,8 @@ class StudySpotsViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(collectionView).offset(padding * 8)
             make.bottom.equalTo(view.snp.bottom)
-            make.leading.equalToSuperview().offset(padding * 6)
-            make.trailing.equalToSuperview().offset(-padding * 6)
+            make.leading.equalToSuperview().offset(padding * 3)
+            make.trailing.equalToSuperview().offset(-padding * 3)
         }
         
         gradient.snp.makeConstraints { make in
@@ -325,6 +325,6 @@ extension StudySpotsViewController: UITableViewDataSource {
 
 extension StudySpotsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 250
     }
 }

@@ -49,7 +49,7 @@ class FavoritesViewController: UIViewController {
     func setupConstraints() {
         
         viewTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(padding * 7)
+            make.top.equalToSuperview().offset(padding * 9)
             make.centerX.equalTo(view.center.x)
             make.height.equalTo(50)
         }
@@ -57,8 +57,8 @@ class FavoritesViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(padding * 20)
             make.bottom.equalTo(view.snp.bottom)
-            make.leading.equalToSuperview().offset(padding * 6)
-            make.trailing.equalToSuperview().offset(-padding * 6)
+            make.leading.equalToSuperview().offset(padding*3)
+            make.trailing.equalToSuperview().offset(-padding*3)
         }
         
         gradient.snp.makeConstraints { make in
@@ -99,7 +99,7 @@ extension FavoritesViewController: UITableViewDataSource {
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 250
     }
     
 }
