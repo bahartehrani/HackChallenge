@@ -153,7 +153,7 @@ class SpotsTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 4),
+            openCloseLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 2),
             openCloseLabel.heightAnchor.constraint(equalToConstant: 25),
             openCloseLabel.widthAnchor.constraint(equalToConstant: 60),
             openCloseLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding * 3)
