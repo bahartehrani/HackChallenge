@@ -142,7 +142,7 @@ class SpotsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             heartImageView.heightAnchor.constraint(equalToConstant: 20),
             heartImageView.widthAnchor.constraint(equalToConstant: 23),
-                        heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 3),
+                        heartImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 4),
             heartImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 4)
         ])
         
