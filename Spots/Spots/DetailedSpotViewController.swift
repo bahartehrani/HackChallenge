@@ -87,6 +87,8 @@ class DetailedSpotViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    // ***** ========== NEED TO FIX CONSTRAINTS TO FIT ON EVERY PHONE =========== ***** //
+    
     func setupConstraints() {
         
         viewTitle.snp.makeConstraints { make in

@@ -59,23 +59,24 @@ class SpotsTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    func configure(for spotx: Spot) {
-        thisSpot = spotx
-        label.text = spotx.name
-        if(spotx.isopening) {
+    // based on spot, make the cell show it = for StudySpotViewController
+    func configure(for spot: Spot) {
+        thisSpot = spot
+        label.text = spot.name
+        if(spot.isopening) {
             openCloseLabel.text = "OPEN"
         }
         else {
             openCloseLabel.text = "CLOSED"
         }
-        pinkOrGray = spotx.isFavorite
-        if(!spotx.isFavorite) {
+        pinkOrGray = spot.isFavorite
+        if(!spot.isFavorite) {
             heartImageView.setImage(UIImage(named: "greyHeart"), for: .normal)
         }
-        
-        spotImage.image = UIImage(named: spotx.name)
+        spotImage.image = UIImage(named: spot.name)
     }
     
+    // = for FavoritesViewController, only * difference * is isFavorite is true
     func faveConfigure(for spot: Spot) {
         thisSpot = spot
         label.text = spot.name
@@ -89,17 +90,9 @@ class SpotsTableViewCell: UITableViewCell {
         }
         heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)
         spotImage.image = UIImage(named: spot.name)
-        //getSpotImage()
     }
-    
-//    func getSpotImage() {
-//        NetworkManager.fetchSpotImage(imageURL: thisSpot.listview_imageurl) { imageSp in
-//            DispatchQueue.main.async {
-//                self.spotImage.image = imageSp
-//            }
-//        }
-//    }
 
+    // ***** Add + Remove favorite (else case is messy, but functional) *****
     @objc func toggleHeart() {
         if (!pinkOrGray) {
             heartImageView.setImage(UIImage(named: "pinkHeart"), for: .normal)

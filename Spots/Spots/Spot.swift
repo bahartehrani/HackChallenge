@@ -67,8 +67,6 @@ class Spot {
         else {
             self.tags.append("Closed")
         }
-        
-        
     }
     
     init (name: String) {
@@ -86,12 +84,29 @@ class Spot {
         detailedview_imageurl = ""
     }
     
+    init (name: String, isFav: Bool, tags: [String], numberFavorited: Int, openClosed: Bool, resources: [String]) {
+        self.id = 0
+        self.name = name
+        self.tags = tags
+        self.numOfFavorited = numberFavorited
+        self.isopening = openClosed
+        self.opening = ""
+        self.closing = ""
+        isFavorite = false
+        self.resources = resources
+        tagsSelected = 0
+        listview_imageurl = ""
+        detailedview_imageurl = ""
+    }
     
     func equals(spot: Spot) -> Bool {
         return self.name == spot.name
     }
     
-    
+    func containsSearch(search: String) -> Bool {
+        return tags.contains(search)
+    }
+
 }
 
 

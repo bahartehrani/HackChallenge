@@ -14,15 +14,13 @@ class FavoritesViewController: UIViewController {
     let reuseIdentifier = "favoritesCellReuse"
     var faveSpots : [Spot] = []
     let padding : CGFloat = 8
-    var viewTitle : UILabel!
-    //gradient
+    var viewTitle : UILabel! 
     var gradient: UIImageView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
-        
         
         viewTitle = UILabel()
         viewTitle.textAlignment = .center
@@ -46,6 +44,8 @@ class FavoritesViewController: UIViewController {
         
     }
     
+    // ***** ========== NEED TO FIX CONSTRAINTS TO FIT ON EVERY PHONE =========== ***** //
+    
     func setupConstraints() {
         
         viewTitle.snp.makeConstraints { make in
@@ -68,6 +68,7 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    // updates the shared Faves
     func updateFaves() {
         faveSpots = FaveSpots.sharedFaveSpots
     }

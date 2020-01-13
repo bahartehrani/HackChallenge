@@ -14,7 +14,7 @@ import SnapKit
 
 class StudySpotsViewController: UIViewController {
     
-    // header view
+    // header view - for filters/categories
     var collectionView : UICollectionView!
     
     let padding : CGFloat = 8
@@ -43,10 +43,10 @@ class StudySpotsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let spot1 = Spot(name: "Carrot1", isFav: false, tags: ["Open","North"], numberFavorited: 0, openClosed: false, resources: [], hours: [])
-//        let spot2 = Spot(name: "Carrot2", isFav: false, tags: ["Closed","West"], numberFavorited: 0, openClosed: false, resources: [], hours: [])
-//        let spot3 = Spot(name: "Carrot3", isFav: false)
-        spots = []
+        let spot1 = Spot(name: "Carrot1", isFav: false, tags: ["Open","North"], numberFavorited: 0, openClosed: false, resources: [])
+        let spot2 = Spot(name: "Carrot2", isFav: false, tags: ["Closed","West"], numberFavorited: 0, openClosed: false, resources: [])
+        let spot3 = Spot(name: "Carrot3")
+        spots = [spot1,spot2,spot3]
         
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
         
@@ -94,14 +94,13 @@ class StudySpotsViewController: UIViewController {
         
     }
     
+    // change the readSpot information to a regular Spot, add to the spots array, ==== UNUSED METHOD CURRENTLY ====
     func convertSpot() {
         for x in readSpotsX {
             let newSpot = Spot(readInfo: x)
             spots.append(newSpot)
         }
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -112,17 +111,7 @@ class StudySpotsViewController: UIViewController {
 
     }
     
-    
-//    func addSpotToSharedFaves() {
-//        FaveSpots.sharedFaveSpots.removeAll()
-//        for s in spots {
-//            if(s.isFavorite) {
-//                print(FaveSpots.sharedFaveSpots)
-//                FaveSpots.sharedFaveSpots.append(s)
-//            }
-//        }
-//    }
-
+    // ***** ========== NEED TO FIX CONSTRAINTS TO FIT ON EVERY PHONE =========== ***** //
     
     func setupConstraints() {
         collectionView.snp.makeConstraints { make in
@@ -154,6 +143,7 @@ class StudySpotsViewController: UIViewController {
         
     }
     
+    // use network manager to read in readSpots, ** convert readSpot to Spot directly and add to spots array **
     func getSpots() {
         NetworkManager.getBackendSpots { readSpots in
             self.readSpotsX = readSpots
@@ -166,12 +156,20 @@ class StudySpotsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
         }
-        
     }
     
-    
+    func arrayContains(array: [Spot], chosenspot: Spot) -> Bool {
+        
+        var fl = false
+        for s in array {
+            if(s.equals(spot: chosenspot)) {
+                fl = true
+            }
+        }
+        
+        return fl
+    }
 
 }
 
@@ -204,85 +202,65 @@ extension StudySpotsViewController : UICollectionViewDelegateFlowLayout {
     
 }
 
+// Setting up how the filter/category bar works  = A MESS, need to reimplement
+
 extension StudySpotsViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         origin = false
+        
         let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
         cell.clickConfigure(for: categories[indexPath.row])
         
         let search = categories[indexPath.row]
         
-        var none = false
         if(cell.isSelect) {
             
             for s in spots {
                 
-                if(s.tags.contains(search)) {
+                if(s.containsSearch(search: search)) {
                     s.tagsSelected += 1
-                    var flag = true
-                    for ss in selectedSpots {
-                        
-                        if (ss.equals(spot: s)) {
-                            flag = false
-                        }
-                    }
                     
-                    if (flag) {
+                    if(!arrayContains(array: selectedSpots, chosenspot: s)) {
                         selectedSpots.append(s)
                     }
                 }
-                else {
-                    none = true
-                }
-                
             }
             
         }
         else {
+            for ss in selectedSpots {
+                
+                if(ss.containsSearch(search: search)) {
+                    ss.tagsSelected -= 1
+                    
+                }
+            }
             
-            if (selectedSpots.count == 0) {
+            var index = selectedSpots.count - 1
+            while(index >= 0) {
                 
-                for s2 in spots {
-                    
-                    if s2.tags.contains(search) {
-                        s2.tagsSelected -= 1
-                    }
-                    
-                }
-            }
-
-            var index = 0
-            while (index < selectedSpots.count) {
-                if(selectedSpots[index].tags.contains(search)) {
-                    selectedSpots[index].tagsSelected -= 1
-                }
-                
-                if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected <= 0) {
+                if(selectedSpots[index].tagsSelected == 0) {
                     selectedSpots.remove(at: index)
-                    index -= 1
+                    
                 }
-
-                index += 1
+                
+                index -= 1
             }
-             
         }
         
-        var checker = true
-        for ss in selectedSpots {
-            if(ss.tagsSelected > 0) {
-                checker = false
-            }
-        }
-        if(checker && !none) {
+        if(selectedSpots.count == 0) {
             origin = true
         }
-        none = false
+        
+        
         tableView.reloadData()
     }
 }
 
 extension StudySpotsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(origin) {
             return spots.count
@@ -305,7 +283,7 @@ extension StudySpotsViewController: UITableViewDataSource {
         return cell
     }
     
-    
+    // how we transfer info to the next view controller - not super intuitive
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if(origin) {
@@ -318,9 +296,7 @@ extension StudySpotsViewController: UITableViewDataSource {
         tabBarController?.selectedIndex = 1
         tableView.reloadData()
     }
-    
-    
-     
+
 }
 
 extension StudySpotsViewController: UITableViewDelegate {
@@ -328,3 +304,67 @@ extension StudySpotsViewController: UITableViewDelegate {
         return 250
     }
 }
+
+
+
+// Things I've removed for now:
+/*
+ 
+ //                    var flag = true
+ //                    for ss in selectedSpots {
+ //
+ //                        if (ss.equals(spot: s)) {
+ //                            flag = false
+ //                        }
+ //                    }
+ //
+ //                    if (flag) {
+ //                        selectedSpots.append(s)
+ //                    }
+ 
+ 
+
+ 
+ 
+ 
+ if (selectedSpots.count == 0) {
+     
+     for s2 in spots {
+         
+         if s2.tags.contains(search) {
+             s2.tagsSelected -= 1
+         }
+         
+     }
+ }
+
+ 
+ while (index < selectedSpots.count) {
+     if(selectedSpots[index].tags.contains(search)) {
+         selectedSpots[index].tagsSelected -= 1
+     }
+     
+     if(selectedSpots[index].tags.contains(search) && selectedSpots[index].tagsSelected <= 0) {
+         selectedSpots.remove(at: index)
+         index -= 1
+     }
+
+     index += 1
+ }
+ 
+ var checker = true
+ for ss in selectedSpots {
+     if(ss.tagsSelected > 0) {
+         checker = false
+     }
+ }
+ if(checker) {
+     origin = true
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ */

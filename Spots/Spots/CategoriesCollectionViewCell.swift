@@ -39,7 +39,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
+    // regular configuring the cells in the filter bar
     func configure(for cat : String) {
         category.text = cat
         if(isSelect) {
@@ -50,6 +50,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // changing what the filter bar looks like when its clicked = changing font color
     func clickConfigure(for cat : String) {
         isSelect = !isSelect
         category.text = cat
