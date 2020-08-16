@@ -43,9 +43,9 @@ class StudySpotsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spot1 = Spot(name: "Carrot1", isFav: false, tags: ["Open","North"], numberFavorited: 0, openClosed: false, resources: [])
-        let spot2 = Spot(name: "Carrot2", isFav: false, tags: ["Closed","West"], numberFavorited: 0, openClosed: false, resources: [])
-        let spot3 = Spot(name: "Carrot3")
+        let spot1 = Spot(name: "Law School Library", isFav: false, tags: ["Open","North"], numberFavorited: 0, openClosed: true, resources: [])
+        let spot2 = Spot(name: "Cocktail Lounge", isFav: false, tags: ["Closed","West"], numberFavorited: 0, openClosed: false, resources: [])
+        let spot3 = Spot(name: "Temple of Zeus")
         spots = [spot1,spot2,spot3]
         
         view.backgroundColor = UIColor(red: 13/255, green: 12/255, blue: 23/255, alpha: 1.0)
